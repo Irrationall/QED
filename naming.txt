@@ -1,0 +1,2 @@
+MAGNET: Management and Analysis of Gene-set Networks with Enrichment Tools
+QED: Querying EnrichR Data
