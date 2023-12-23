@@ -1,6 +1,36 @@
 # QED
 Querying  EnrichR Data
 
+<br>
+
+#  Citation
+Please cite [EnrichR](https://maayanlab.cloud/Enrichr/)
+
+<br>
+
+# Installation
+To install the QED package, follow these steps:
+
+1. Clone the repository (Or download this repository):
+    ```
+    git clone https://github.com/Irrationall/QED.git
+    ```
+2. Navigate into the cloned repository:
+    ```
+    cd QED
+    ```
+3. Install the package:
+    ```
+    pip install -e .
+    ```
+
+This will install the QED package in editable mode, meaning changes to the source code will be reflected in the installed package without needing to reinstall.
+
+<br>
+
+# Tutorial
+
+
 ```python
 from qed.data.reader import readtxt
 from qed.data.query import get_enrichment_dataframes
