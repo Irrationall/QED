@@ -54,6 +54,7 @@ blist = readtxt("./example_data/endocrinogenesis_colside.csv", sep=",", format="
 
 
 ```python
+# Check geneset object
 alist
 ```
 
@@ -72,11 +73,13 @@ alist
 
 
 ```python
+# Example dblist of EnrichR
 dblist = ['KEGG_2021_Human','Reactome_2022','MSigDB_Hallmark_2020','GO_Biological_Process_2021']
 ```
 
 
 ```python
+# Add gene enrichment dataframe to geneset object
 aalist = get_enrichment_dataframes(alist, dblist, "Celltype", n_jobs=None)
 ```
 
@@ -86,6 +89,7 @@ aalist = get_enrichment_dataframes(alist, dblist, "Celltype", n_jobs=None)
 
 
 ```python
+# Let's check geneset object again
 aalist
 ```
 
@@ -104,6 +108,7 @@ aalist
 
 
 ```python
+# mergeing all dataframes at once
 df = merging_df(aalist)
 df.head(10)
 ```
