@@ -13,6 +13,8 @@ import json
 
 def upload_genes(genes: List[str]) :
 
+    """ Upload gene sets to EnrichR website """
+
     ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/addList'
     genes_str = '\n'.join(genes)
     description = 'Example gene list'
@@ -32,6 +34,10 @@ def upload_genes(genes: List[str]) :
 
 def to_dataframe(request_res: Dict, database: str, annot_colname: str, annot: Any) -> pd.DataFrame:
 
+    """ Convert response of request to pandas dataframe
+        * request result = JSON format
+        * returns pandas.DataFrame """
+
     colnames = ["Rank", "Term", "P-value", "Odds ratio", "Combined score", "Overlapping genes", "Adjusted p-value", "Old p-value", "Old adjusted p-value"]
     df = pd.DataFrame(request_res[database], columns=colnames)
     df['Database'] = database
@@ -41,6 +47,8 @@ def to_dataframe(request_res: Dict, database: str, annot_colname: str, annot: An
 
 
 def get_enrichment_data(genes: List, database: str, annot_colname: str, annot: Any) :
+
+    """ Get response from EnrichR website using querying gene set"""
     
     data = upload_genes(genes)
 
@@ -63,7 +71,7 @@ def get_enrichment_data(genes: List, database: str, annot_colname: str, annot: A
     return df
 
 
-def prepare_get_multiple_enrichment_data(geneset: geneset, database: str, annot_colname: str, annot: Any = None):
+def _get_multiple_enrichment_data(geneset: geneset, database: str, annot_colname: str, annot: Any = None):
     
     try:
         annot = annot if annot is not None else geneset.name
@@ -76,12 +84,12 @@ def prepare_get_multiple_enrichment_data(geneset: geneset, database: str, annot_
     return geneset
 
 
-def get_enrichment_dataframes_spare(geneset_list, dblist, annot_colname, annot=None):
+def get_enrichment_dataframes_spare(geneset_list :List[geneset], dblist: List, annot_colname: str, annot: Any = None):
     print_lock = Lock()
 
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for geneset in geneset_list:
-            futures = {executor.submit(prepare_get_multiple_enrichment_data, geneset, database, annot_colname, annot): database for database in dblist}
+            futures = {executor.submit(_get_multiple_enrichment_data, geneset, database, annot_colname, annot): database for database in dblist}
             concurrent.futures.wait(futures)
             
             with print_lock:
@@ -94,11 +102,11 @@ def get_enrichment_dataframes_spare(geneset_list, dblist, annot_colname, annot=N
 
 
 
-def get_enrichment_dataframes(geneset_list, dblist, annot_colname, annot=None):
+def get_enrichment_dataframes(geneset_list: List[geneset], dblist: List, annot_colname: str, annot: Any =None, n_jobs: int = None):
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers = n_jobs) as executor:
 
-        futures = {executor.submit(prepare_get_multiple_enrichment_data, geneset, database, annot_colname, annot): geneset for geneset in geneset_list for database in dblist}
+        futures = {executor.submit(_get_multiple_enrichment_data, geneset, database, annot_colname, annot): geneset for geneset in geneset_list for database in dblist}
         
         pbar = tqdm(total=len(geneset_list), desc='Processing genesets')
         
