@@ -3,7 +3,7 @@ from .structure import geneset
 import concurrent.futures
 from concurrent.futures import as_completed
 from threading import Lock
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 import pandas as pd
 import requests
 import json
@@ -32,6 +32,8 @@ def upload_genes(genes: List[str]) :
     return data
 
 
+
+
 def to_dataframe(request_res: Dict, database: str, annot_colname: str, annot: Any) -> pd.DataFrame:
 
     """ Convert response of request to pandas dataframe
@@ -44,6 +46,8 @@ def to_dataframe(request_res: Dict, database: str, annot_colname: str, annot: An
     df[annot_colname] = annot
 
     return df
+
+
 
 
 def get_enrichment_data(genes: List, database: str, annot_colname: str, annot: Any) :
@@ -71,6 +75,8 @@ def get_enrichment_data(genes: List, database: str, annot_colname: str, annot: A
     return df
 
 
+
+
 def _get_multiple_enrichment_data(geneset: geneset, database: str, annot_colname: str, annot: Any = None):
     
     try:
@@ -82,6 +88,8 @@ def _get_multiple_enrichment_data(geneset: geneset, database: str, annot_colname
         print(f"Error processing {geneset.name} for {database}: {str(e)}")
 
     return geneset
+
+
 
 
 def get_enrichment_dataframes_spare(geneset_list :List[geneset], dblist: List, annot_colname: str, annot: Any = None):
@@ -99,6 +107,7 @@ def get_enrichment_dataframes_spare(geneset_list :List[geneset], dblist: List, a
         print(f'All process completed!')
 
     return geneset_list
+
 
 
 
