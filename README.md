@@ -1,14 +1,15 @@
 # QED
 Querying  EnrichR Data
+- Querying several gene sets to EnrichR at once
 
 <br>
 
-#  Citation
+##  Citation
 Please cite [EnrichR](https://maayanlab.cloud/Enrichr/)
 
 <br>
 
-# Installation
+## Installation
 To install the QED package, follow these steps:
 
 1. Clone the repository (Or download this repository):
@@ -28,7 +29,7 @@ This will install the QED package in editable mode, meaning changes to the sourc
 
 <br>
 
-# Tutorial
+## Tutorial
 
 
 ```python
