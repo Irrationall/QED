@@ -109,7 +109,7 @@ aalist
 
 ```python
 # mergeing all dataframes at once
-df = merging_df(aalist)
+df = merge_df(aalist)
 df.head(10)
 ```
 
