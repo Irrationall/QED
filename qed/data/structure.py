@@ -22,7 +22,7 @@ class geneset:
 
 
 
-def merging_df(geneset_list, term_suffix=True) :
+def merge_df(geneset_list, term_suffix=True) :
 
     merged_dfs = []
 

@@ -46,11 +46,27 @@ def readtxt(file_path: str, sep: str, format: Optional[str] = 'rowside') -> List
 
 
 @calc_time
-def readseurat() -> List[geneset] :
+def readseurat(file_path: str, sep: str, 
+               adj_pval_cutoff: float = 0.05,
+               lfc_cutoff: float = 0.5,
+               pct_cutoff: float = 0.05, 
+               *args, **kwargs) -> List[geneset] :
     
     setlist = []
     
+    df = pd.read_csv(file_path, sep=sep, *args, **kwargs)
+    df = df[(df['p_val_adj'] <= adj_pval_cutoff) & (df['avg_log2FC'] >= lfc_cutoff) & (df['pct.1'] >= pct_cutoff)]
+    
+    tmp_group = df.groupby('cluster')['gene']
+    
+    for name, group in tmp_group:
+        genes = group.tolist()
+        gs = geneset(name=name, genes=genes)
+        setlist.append(gs)
+    
     return setlist
+
+
 
 
 @calc_time
