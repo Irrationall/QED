@@ -47,7 +47,7 @@ import pandas as pd
 alist = readtxt("./example_data/endocrinogenesis_rowside.csv", sep=",", format="rowside")
 alist = readtxt("./example_data/endocrinogenesis_colside.csv", sep=",", format="colside")
 
-# From 'FindAllMarkers' result from Seurat
+# From 'FindAllMarkers' result of Seurat
 alist = readseurat("./example_data/seurat_pbmc_markers.csv", sep=",", index_col=0) # You can pass any pd.DataFrame arguments
 
 ```
