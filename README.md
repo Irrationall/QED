@@ -33,7 +33,7 @@ This will install the QED package in editable mode, meaning changes to the sourc
 
 
 ```python
-from qed.data import readtxt
+from qed.data import readtxt, readseurat
 from qed.data import get_enrichment_dataframes
 from qed.data import merge_df
 import pandas as pd
