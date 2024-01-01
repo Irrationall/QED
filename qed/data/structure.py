@@ -22,7 +22,7 @@ class geneset:
 
 
 
-def merge_df(geneset_list, term_suffix=True) :
+def merge_df(geneset_list: List[geneset], term_suffix: bool = True) :
 
     merged_dfs = []
 
@@ -59,6 +59,8 @@ def merge_df(geneset_list, term_suffix=True) :
 
         # Remove CL000 at the end of the 'Term' column for Azimuth Celltype 2021
         df['Term'] = df['Term'].str.replace(r'CL\d+$', '', regex=True)
+        
+        df['Term'] = df['Term'].str.strip()
 
     return df 
 
