@@ -77,7 +77,8 @@ alist
 ```python
 # Example dblist of EnrichR
 
-dblist = ['KEGG_2021_Human','Reactome_2022','MSigDB_Hallmark_2020','GO_Biological_Process_2021']
+dblist = ['KEGG_2021_Human','Reactome_2022','MSigDB_Hallmark_2020',
+          'GO_Biological_Process_2021', 'WikiPathway_2023_Human']
 ```
 
 
@@ -101,19 +102,19 @@ aalist
 
 * result
 
-    [geneset object [name: Alpha, number of genes: 109, number of GO_dataframes: 4],  
-     geneset object [name: Beta, number of genes: 159, number of GO_dataframes: 4],  
-     geneset object [name: Delta, number of genes: 51, number of GO_dataframes: 4],  
-     geneset object [name: Epsilon, number of genes: 68, number of GO_dataframes: 4],  
-     geneset object [name: EP, number of genes: 180, number of GO_dataframes: 4],  
-     geneset object [name: Ductal, number of genes: 150, number of GO_dataframes: 4],  
-     geneset object [name: Pre-endocrine, number of genes: 61, number of GO_dataframes: 4]]
+    [geneset object [name: Alpha, number of genes: 109, number of GO_dataframes: 5],  
+     geneset object [name: Beta, number of genes: 159, number of GO_dataframes: 5],  
+     geneset object [name: Delta, number of genes: 51, number of GO_dataframes: 5],  
+     geneset object [name: Epsilon, number of genes: 68, number of GO_dataframes: 5],  
+     geneset object [name: EP, number of genes: 180, number of GO_dataframes: 5],  
+     geneset object [name: Ductal, number of genes: 150, number of GO_dataframes: 5],  
+     geneset object [name: Pre-endocrine, number of genes: 61, number of GO_dataframes: 5]]
 
 
 
 
 ```python
-# mergeing all dataframes at once
+# merging all dataframes at once
 
 df = merge_df(aalist)
 df.head(3)
@@ -135,7 +136,8 @@ from qed.pl import heatmap
 
 plt.figure(figsize=(5,10))
 
-ax = heatmap(df = df, n = 5,  
+ax = heatmap(df = df,
+             n = 5,  
              group_by = 'Celltype',  
              order_by = 'Adjusted p-value',  
              allow_duplicate = False,
