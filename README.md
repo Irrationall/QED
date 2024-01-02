@@ -77,7 +77,8 @@ alist
 ```python
 # Example dblist of EnrichR
 
-dblist = ['KEGG_2021_Human','Reactome_2022','MSigDB_Hallmark_2020','GO_Biological_Process_2021']
+dblist = ['KEGG_2021_Human','Reactome_2022','MSigDB_Hallmark_2020',
+          'GO_Biological_Process_2021', 'WikiPathway_2023_Human']
 ```
 
 
@@ -101,22 +102,22 @@ aalist
 
 * result
 
-    [geneset object [name: Alpha, number of genes: 109, number of GO_dataframes: 4],  
-     geneset object [name: Beta, number of genes: 159, number of GO_dataframes: 4],  
-     geneset object [name: Delta, number of genes: 51, number of GO_dataframes: 4],  
-     geneset object [name: Epsilon, number of genes: 68, number of GO_dataframes: 4],  
-     geneset object [name: EP, number of genes: 180, number of GO_dataframes: 4],  
-     geneset object [name: Ductal, number of genes: 150, number of GO_dataframes: 4],  
-     geneset object [name: Pre-endocrine, number of genes: 61, number of GO_dataframes: 4]]
+    [geneset object [name: Alpha, number of genes: 109, number of GO_dataframes: 5],  
+     geneset object [name: Beta, number of genes: 159, number of GO_dataframes: 5],  
+     geneset object [name: Delta, number of genes: 51, number of GO_dataframes: 5],  
+     geneset object [name: Epsilon, number of genes: 68, number of GO_dataframes: 5],  
+     geneset object [name: EP, number of genes: 180, number of GO_dataframes: 5],  
+     geneset object [name: Ductal, number of genes: 150, number of GO_dataframes: 5],  
+     geneset object [name: Pre-endocrine, number of genes: 61, number of GO_dataframes: 5]]
 
 
 
 
 ```python
-# mergeing all dataframes at once
+# merging all dataframes at once
 
 df = merge_df(aalist)
-df.head(10)
+df.head(3)
 ```
 
 | Rank | Term                              | P-value       | Odds ratio | Combined score | Overlapping genes                          | Adjusted p-value | Old p-value | Old adjusted p-value | Database             | Celltype |
@@ -124,11 +125,30 @@ df.head(10)
 | 1    | Pancreas Beta Cells               | 1.888850e-09  | 41.297089  | 829.546906     | [PCSK2, DPP4, SCGN, ABCC8, GCG, IAPP, ISL1] | 4.533240e-08      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
 | 2    | KRAS Signaling Up                 | 1.392889e-05  | 8.126650   | 90.868511      | [RBP4, PCSK1N, TSPAN7, SCG5, USH1C, CPE, SCG3, ... | 1.671466e-04      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
 | 3    | Myogenesis                        | 2.394210e-02  | 3.827988   | 14.286499      | [CAMK2B, NQO1, GPX3, NCAM1]                | 1.758437e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
-| 4    | Reactive Oxygen Species Pathway   | 2.930728e-02  | 7.891827   | 27.857515      | [NQO1, GPX3]                               | 1.758437e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
-| 5    | Spermatogenesis                   | 3.763212e-02  | 4.236492   | 13.895260      | [PCSK1N, SCG5, SCG3]                       | 1.806342e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
-| 6    | Epithelial Mesenchymal Transition | 9.615827e-02  | 2.829327   | 6.625603       | [RGS4, CDH2, SCG2]                         | 3.310276e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
-| 7    | Protein Secretion                  | 9.655232e-02  | 3.936568   | 9.202398       | [OCRL, PAM]                               | 3.310276e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
-| 8    | Peroxisome                         | 1.103425e-01  | 3.626351   | 7.993080       | [TTR, ABCC8]                              | 3.310276e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
-| 9    | Hedgehog Signaling                 | 1.787346e-01  | 5.252910   | 9.044741       | [SCG2]                                    | 4.766255e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
-| 10   | Xenobiotic Metabolism              | 2.975500e-01  | 1.859058   | 2.253500       | [NQO1, RBP4]                              | 6.491999e-01      | 0           | 0                      | MSigDB_Hallmark_2020 | Alpha    |
+
+
+```python
+# Let's draw a heatmap
+# More imporved heatmap TBD
+
+import matplotlib.pyplot as plt
+from qed.pl import heatmap
+
+plt.figure(figsize=(5,10))
+
+ax = heatmap(df = df,
+             n = 5,  
+             group_by = 'Celltype',  
+             order_by = 'Adjusted p-value',  
+             allow_duplicate = False,
+             method = 'average')
+
+plt.show()
+```
+![Heatmap](./example_image/temp_heatmap.png)
+
+
+
+
+
 

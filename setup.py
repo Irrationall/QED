@@ -9,6 +9,7 @@ setup(
         'tqdm',
         'pandas',
         'requests',
+        'scipy',
         'dataclasses;python_version<"3.7"'],
     packages=find_packages(),
 )
