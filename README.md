@@ -129,21 +129,28 @@ df.head(3)
 
 ```python
 # Let's draw a heatmap
+# Return of 'heatmap' function is fig, ax, and cbar. You can customize them with matplotlib.
 # More imporved heatmap TBD
 
 import matplotlib.pyplot as plt
 from qed.pl import heatmap
 
-plt.figure(figsize=(5,10))
+fig, ax, cbar = heatmap(df=df,
+        n=5,
+        group_by="Celltype",
+        order_by="Adjusted p-value",
+        allow_duplicate=False,
+        cmap='Blues',
+        xlabel_rotation=60,
+        vmin=0,
+        vmax=6,
+        cbar_kws={'shrink' : 0.5, 'label': '-log10(P-value)'})
 
-ax = heatmap(df = df,
-             n = 5,  
-             group_by = 'Celltype',  
-             order_by = 'Adjusted p-value',  
-             allow_duplicate = False,
-             method = 'average')
+ax.tick_params(labelbottom=False,labeltop=True)
+ax.xaxis.tick_top()
 
 plt.show()
+
 ```
 ![Heatmap](./example_image/temp_heatmap.png)
 
