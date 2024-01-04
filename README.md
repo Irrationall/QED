@@ -4,7 +4,7 @@ Querying  EnrichR Data
 
 > [!CAUTION]
 > Critical mismatch when subsetting dataframe in heatmap function corrected.  
-> Please reinstall this code if you cloned repository before <ins>***2024-01-04 08:21:38 UTC (23:13:38 GMT+9)***</ins>
+> Please reinstall this code if you cloned repository before <ins>***2024-01-04 14:13:38 UTC (23:13:38 GMT+9)***</ins>
 
 <br>
 
