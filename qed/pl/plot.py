@@ -56,6 +56,11 @@ def heatmap(df: pd.DataFrame,
         Returns:
             matplotlib.axes class: You can manage plot with matplotlib package
         """
+
+        if order_by not in ['Adjusted p-value', 'P-value', 'Odds ratio', 'Combined score'] :
+             raise ValueError("'Order_by' should be one of 'Adjusted p-value', 'P-value', 'Odds ratio', and 'Combined score'.")
+
+
         fig, ax = plt.subplots(figsize=figsize)
         
         subset_df = select_top_n(df, 
@@ -63,9 +68,14 @@ def heatmap(df: pd.DataFrame,
                                  group_by, 
                                  order_by, 
                                  allow_duplicate)
+        
+        if order_by in ['Adjusted p-value', 'P-value'] :
 
-        pivot_df = subset_df.pivot(index = "Term", columns = group_by, values = order_by).fillna(1).rename_axis(None, axis=1)
-        pivot_df = - np.log10(pivot_df)
+            pivot_df = subset_df.pivot(index = "Term", columns = group_by, values = order_by).fillna(1).rename_axis(None, axis=1)
+            pivot_df = - np.log10(pivot_df)
+
+        elif order_by in ['Odds ratio', 'Combined score'] :
+            pivot_df = subset_df.pivot(index = "Term", columns = group_by, values = order_by).rename_axis(None, axis=1)
 
         row_linkage = hierarchy.linkage(pivot_df.values, method=method, metric=metric)
         row_order = hierarchy.leaves_list(row_linkage)

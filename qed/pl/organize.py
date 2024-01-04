@@ -9,11 +9,22 @@ def select_top_n(df: pd.DataFrame,
                  order_by: str = 'Adjusted p-value', 
                  allow_duplicate: bool = False):
     
+    # Check if 'Term' is in dataframe
+
     if 'Term' not in df.columns :
         raise ValueError("The 'Term' column is not present in the input DataFrame.")
     
+    # Chcek 'order_by' is valid one.
+
+    if order_by in ['Adjusted p-value', 'P-value'] :
+        ascending = True
+    elif order_by in ['Odds ratio', 'Combined score'] :
+        ascending = False
+    else :
+        raise ValueError("'Order_by' should be one of 'Adjusted p-value', 'P-value', 'Odds ratio', and 'Combined score'.")
+    
     df_copy = df.copy(deep=True)
-    df_copy = df_copy.sort_values([group_by, order_by], ascending=True)
+    df_copy = df_copy.sort_values([group_by, order_by], ascending=ascending)
     df_top_n = df_copy.groupby(group_by).head(n)
     
 
@@ -37,7 +48,7 @@ def select_top_n(df: pd.DataFrame,
 
             # Find and remove duplicates
             
-            df_top_n = df_top_n.sort_values(order_by)
+            df_top_n = df_top_n.sort_values(order_by, ascending=ascending)
             mask = df_top_n.duplicated(subset='Term', keep='first')
             
             deleted_rows = {}
@@ -54,9 +65,26 @@ def select_top_n(df: pd.DataFrame,
                 
     df_top_n = df_top_n.sort_values([group_by, order_by])
 
+    # Return 'Overlapping genes' to list    
+
     if 'Overlapping genes' in df_top_n.columns :
         df_top_n['Overlapping genes'] = df_top_n['Overlapping genes'].apply(list)
 
-    df_top_n = df_top_n.reset_index(drop=True)
+    # Subset original df using 'Term' and 'Database'
 
-    return df_top_n
+    df_subset = pd.DataFrame()
+
+    for _, row in df_top_n.iterrows():
+
+        # Extract 'Term' and 'Database' 
+
+        term = row['Term']
+        database = row['Database']
+
+        df_row_subset = df[(df['Term'] == term) & (df['Database'] == database)]
+        
+        df_subset = pd.concat([df_subset, df_row_subset])
+
+    df_subset = df_subset.reset_index(drop=True)
+
+    return df_subset
