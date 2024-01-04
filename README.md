@@ -1,6 +1,10 @@
 # QED
 Querying  EnrichR Data
-- Querying several gene sets to EnrichR at once
+- Querying several gene sets to EnrichR at once  
+
+> [!CAUTION]
+> Critical mismatch when subsetting dataframe in heatmap function corrected.  
+> Please reinstall this code if you cloned repository before <ins>***2024-01-04 08:21:38 UTC (23:13:38 GMT+9)***</ins>
 
 <br>
 
