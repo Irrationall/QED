@@ -164,8 +164,8 @@ plt.show()
 from qed.pl import generate_cmap
 import numpy as np
 
-#This example uses default settings for boundaries and colors.
-#If you don’t provide any arguments to the function, these parameters will be set automatically.
+# This example uses default settings for boundaries and colors.
+# If you don’t provide any arguments to the function, these parameters will be set automatically.
 
 cmap = generate_cmap(color_boundary=[0, -np.log10(0.05), 8],
                      colors = ["#97C3FB", "#EEEEE1","#FF7777"])
