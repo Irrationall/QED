@@ -187,6 +187,7 @@ ax.xaxis.tick_top()
 plt.show()
 
 ```
+![Heatmap](./example_image/example_heatmap_2.png)
 
 
 
