@@ -84,7 +84,6 @@ def heatmap(df: pd.DataFrame,
         col_order = hierarchy.leaves_list(col_linkage)
 
         clustered_data = pivot_df.iloc[row_order, col_order]
-        clustered_data
 
         quadmesh = ax.pcolormesh(clustered_data, 
                                  cmap=cmap, 

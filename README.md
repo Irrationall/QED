@@ -158,6 +158,36 @@ plt.show()
 ```
 ![Heatmap](./example_image/temp_heatmap.png)
 
+```python
+# You can make your own colormap
+
+from qed.pl import generate_cmap
+import numpy as np
+
+#This example uses default settings for boundaries and colors.
+#If you don’t provide any arguments to the function, these parameters will be set automatically.
+
+cmap = generate_cmap(color_boundary=[0, -np.log10(0.05), 8],
+                     colors = ["#97C3FB", "#EEEEE1","#FF7777"])
+
+fig, ax, cbar = heatmap(df=df,
+        n=5,
+        group_by="Celltype",
+        order_by="Adjusted p-value",
+        allow_duplicate=False,
+        cmap=cmap,
+        xlabel_rotation=90,
+        vmin=0,
+        vmax=8,
+        cbar_kws={'shrink' : 0.5, 'label': '-log10(adj.P-value)'})
+
+ax.tick_params(labelbottom=False,labeltop=True)
+ax.xaxis.tick_top()
+
+plt.show()
+
+```
+
 
 
 
