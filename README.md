@@ -37,7 +37,7 @@ This will install the QED package in editable mode, meaning changes to the sourc
 
 
 ```python
-from qed.data import readtxt, readseurat
+from qed.data import readtxt, readseurat, readscanpy
 from qed.data import get_enrichment_dataframes
 from qed.data import merge_df
 import pandas as pd
@@ -46,7 +46,6 @@ import pandas as pd
 
 ```python
 # Import example data
-# Scanpy format: TBD
 
 alist = readtxt("./example_data/endocrinogenesis_rowside.csv", sep=",", format="rowside")
 alist = readtxt("./example_data/endocrinogenesis_colside.csv", sep=",", format="colside")
@@ -54,12 +53,18 @@ alist = readtxt("./example_data/endocrinogenesis_colside.csv", sep=",", format="
 # From 'FindAllMarkers' result of Seurat
 alist = readseurat("./example_data/seurat_pbmc_markers.csv", sep=",", index_col=0) # You can pass any pd.DataFrame arguments
 
+# From 'sc.tl.rank_genes_groups' result of Scanpy
+alist = readscanpy(adata, adj_pval_cutoff = 0.05, lfc_cutoff = 1)
+
+# If you want to cut gene list via 'scores' or 'logfoldchanges',
+alist = readscanpy(adata, adj_pval_cutoff = 0.05, lfc_cutoff = 1, select_top_n = 20, select_order = 'scores')
+
 ```
 
     Execution time for readtxt: 0.0009999275207519531 seconds
     Execution time for readtxt: 0.0030002593994140625 seconds
+    Execution time for readscanpy: 0.03175973892211914 seconds
     
-
 
 ```python
 # Check geneset object
