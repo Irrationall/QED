@@ -73,7 +73,7 @@ def readseurat(file_path: str, sep: str,
 
 
 @calc_time
-def readscanpy(adata: AnnData,
+def readscanpy(adata: 'AnnData',
                adj_pval_cutoff: float = 0.05,
                lfc_cutoff: float = 0.5,
                select_top_n: Optional[int] = None,
