@@ -28,7 +28,7 @@ def readtxt(file_path: str, sep: str, format: Optional[str] = 'rowside') -> List
 
         for line in lines :
             name = line.split(sep)[0]
-            genes = list(filter(None, line.split(",")[1:]))
+            genes = list(filter(None, line.split(sep)[1:]))
             Gene_Set = geneset(name, genes)
             setlist.append(Gene_Set)
     
@@ -78,6 +78,7 @@ def readscanpy(adata: 'AnnData',
                lfc_cutoff: float = 0.5,
                select_top_n: Optional[int] = None,
                select_order: Optional[str] = 'scores') -> List[geneset] :
+    
     
     if 'rank_genes_groups' not in adata.uns:
         raise ValueError("Run scanpy.tl.rank_genes_groups first.")
