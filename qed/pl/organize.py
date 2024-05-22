@@ -14,7 +14,7 @@ def select_top_n(df: pd.DataFrame,
     if 'Term' not in df.columns :
         raise ValueError("The 'Term' column is not present in the input DataFrame.")
     
-    # Chcek 'order_by' is valid one.
+    # Check 'order_by' is valid one.
 
     if order_by in ['Adjusted p-value', 'P-value'] :
         ascending = True

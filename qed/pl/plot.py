@@ -20,7 +20,9 @@ def heatmap(df: pd.DataFrame,
             figsize: Tuple = (5,10),
             vmin: float = None,
             vmax: float = None,
-            cbar_kws: Dict = None) :
+            cbar_kws: Dict = None,
+            cluster_rows: bool = True,
+            cluster_columns: bool = True) :
         
         """Draw heatmap with merged DataFrame
 
@@ -51,7 +53,11 @@ def heatmap(df: pd.DataFrame,
             vmin, vmax (float, optional): Determine data range that colormap covers
                                           Defaults to None  
                                
-            cbar_kws (Dict, optional): colorbar arguments. Passed to matplotlib.pyplot.colorbar                      
+            cbar_kws (Dict, optional): colorbar arguments. Passed to matplotlib.pyplot.colorbar 
+
+            cluster_rows (bool, optional): whether to cluster rows
+            
+            cluster_columns (bool, optional): wheter to cluster columns                              
 
         Returns:
             matplotlib.axes class: You can manage plot with matplotlib package
@@ -83,7 +89,19 @@ def heatmap(df: pd.DataFrame,
         col_linkage = hierarchy.linkage(pivot_df.values.T, method=method, metric=metric)
         col_order = hierarchy.leaves_list(col_linkage)
 
-        clustered_data = pivot_df.iloc[row_order, col_order]
+        # Matrix for heatmap
+        
+        if cluster_rows is True and cluster_columns is True :
+             clustered_data = pivot_df.iloc[row_order, col_order]
+
+        elif cluster_rows is True and cluster_columns is False :
+             clustered_data = pivot_df.iloc[row_order, :]
+
+        elif cluster_rows is False and cluster_columns is True :
+             clustered_data = pivot_df.iloc[:, col_order]
+
+        else :
+             clustered_data = pivot_df
 
         quadmesh = ax.pcolormesh(clustered_data, 
                                  cmap=cmap, 
