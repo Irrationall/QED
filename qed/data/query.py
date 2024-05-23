@@ -15,7 +15,12 @@ import json
 
 def upload_genes(genes: List[str]) :
 
-    """ Upload gene sets to EnrichR website """
+    """ Upload gene sets to EnrichR website
+
+         Args
+            genes (List) : A list of genes to query to enrichR
+
+    """
 
     ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/addList'
     genes_str = '\n'.join(genes)
@@ -26,6 +31,7 @@ def upload_genes(genes: List[str]) :
     }
 
     response = requests.post(ENRICHR_URL, files=payload)
+    
     if not response.ok:
         raise Exception('Error analyzing gene list')
 
@@ -43,7 +49,8 @@ def to_dataframe(request_res: Dict,
 
     """ Convert response of request to pandas dataframe
         * request result = JSON format
-        * returns pandas.DataFrame """
+        * returns pandas.DataFrame 
+    """
 
     colnames = ["Rank", "Term", "P-value", "Odds ratio", "Combined score", "Overlapping genes", "Adjusted p-value", "Old p-value", "Old adjusted p-value"]
     df = pd.DataFrame(request_res[database], columns=colnames)
@@ -60,7 +67,18 @@ def get_enrichment_data(genes: List,
                         annot_colname: str, 
                         annot: Any) :
 
-    """ Get response from EnrichR website using querying gene set"""
+    """ Get response from EnrichR website using querying gene set
+    
+         Args
+            genes (List): A list of genes to query for enrichR.
+
+            database (str): Name of database to query for enrichR.
+
+            annot_colname (str): A column name for each gene sets.
+
+            annot (Any): value for column 'annot_colname'.
+
+    """
     
     data = upload_genes(genes)
 
@@ -73,8 +91,10 @@ def get_enrichment_data(genes: List,
     response = requests.get(url, stream=True)
     
     if not response.ok:
+
         print(f"Status code: {response.status_code}")
         print(f"Response content: {response.content}")
+
         raise Exception('Error fetching enrichment results')
     
     res = json.loads(response.text)
@@ -112,7 +132,11 @@ def get_enrichment_dataframes_spare(geneset_list :List[geneset],
 
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for geneset in geneset_list:
-            futures = {executor.submit(_get_multiple_enrichment_data, geneset, database, annot_colname, annot): database for database in dblist}
+            futures = {executor.submit(_get_multiple_enrichment_data, 
+                                       geneset, 
+                                       database, 
+                                       annot_colname, 
+                                       annot): database for database in dblist}
             concurrent.futures.wait(futures)
             
             with print_lock:
@@ -129,16 +153,36 @@ def get_enrichment_dataframes_spare(geneset_list :List[geneset],
 def get_enrichment_dataframes(geneset_list: List[geneset], 
                               dblist: List, 
                               annot_colname: str, 
-                              annot: Any =None, 
+                              annot: Any = None, 
                               n_jobs: int = None):
+    """
+    Retrieves enrichment dataframes for a list of genesets from multiple databases.
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers = n_jobs) as executor:
+    Args:
+        geneset_list (List[geneset]): A list of genesets for enrichment analysis.
 
-        futures = {executor.submit(_get_multiple_enrichment_data, geneset, database, annot_colname, annot): geneset for geneset in geneset_list for database in dblist}
+        dblist (List): A list of databases to perform enrichment analysis on.
+
+        annot_colname (str): The column name in the database for annotation.
+
+        annot (Any, optional): Additional annotation information. Defaults to None.
+        
+        n_jobs (int, optional): The number of parallel jobs to run. Defaults to None.
+
+    Returns:
+        List[geneset]: The input geneset list.
+
+    """
+    with concurrent.futures.ThreadPoolExecutor(max_workers=n_jobs) as executor:
+        futures = {executor.submit(_get_multiple_enrichment_data, 
+                                   geneset, 
+                                   database, 
+                                   annot_colname, 
+                                   annot): geneset for geneset in geneset_list for database in dblist}
         
         pbar = tqdm(total=len(geneset_list), desc='Processing genesets')
         
-        for future in as_completed(futures):
+        for future in concurrent.futures.as_completed(futures):
             geneset = futures[future]
             pbar.update(1)
         
@@ -235,17 +279,119 @@ def get_enrichment_data_with_background(query_genes: List[str],
 
 
 
-def _get_multiple_enrichment_data_with_background(geneset: geneset, 
-                                  database: str, 
-                                  annot_colname: str, 
-                                  annot: Any = None):
-    
+def _get_multiple_enrichment_data_with_background(
+    geneset: geneset,
+    background_geneset: List,
+    database: str,
+    annot_colname: str,
+    annot: Any = None
+):
+    """
+    Get multiple enrichment data with background geneset.
+
+    Args:
+        geneset (geneset): The geneset object containing the genes of interest.
+
+        background_geneset (List): The list of background genes.
+
+        database (str): The name of the database to query.
+
+        annot_colname (str): The name of the column containing annotations in the database.
+
+        annot (Any, optional): The annotation to use. Defaults to None.
+
+    Returns:
+        geneset: The updated geneset object with enrichment data appended to the GO attribute.
+    """
     try:
         annot = annot if annot is not None else geneset.name
-        result_df = get_enrichment_data_with_background(geneset.genes, database, annot_colname, annot)
+
+        result_df = get_enrichment_data_with_background(
+            geneset.genes,
+            background_geneset,
+            database,
+            annot_colname,
+            annot
+        )
         geneset.GO.append(result_df)
-    
+
     except Exception as e:
         print(f"Error processing {geneset.name} for {database}: {str(e)}")
 
     return geneset
+
+
+
+
+def get_enrichment_dataframes_with_background_spare(geneset_list :List[geneset], 
+                                    dblist: List, annot_colname: str, 
+                                    annot: Any = None):
+    
+    print_lock = Lock()
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for geneset in geneset_list:
+            futures = {executor.submit(_get_multiple_enrichment_data_with_background, 
+                                       geneset, 
+                                       database, 
+                                       annot_colname, 
+                                       annot): database for database in dblist}
+            concurrent.futures.wait(futures)
+            
+            with print_lock:
+                print(f'{geneset.name} completed!')
+    
+    with print_lock :    
+        print(f'All process completed!')
+
+    return geneset_list
+
+
+
+
+def get_enrichment_dataframes_with_background(geneset_list: List[geneset],
+                              background_geneset: List, 
+                              dblist: List, 
+                              annot_colname: str, 
+                              annot: Any =None, 
+                              n_jobs: int = None):
+    """
+    Get enrichment dataframes with background genes.
+
+    Args:
+        geneset_list (List[geneset]): A list of genesets.
+        
+        background_geneset (List): A list of background genes.
+        
+        dblist (List): A list of databases.
+        
+        annot_colname (str): The name of the annotation column.
+        
+        annot (Any, optional): Additional annotation. Defaults to None.
+        
+        n_jobs (int, optional): The number of parallel jobs to run. Defaults to None.
+
+    Returns:
+        List[geneset]: The list of genesets.
+    """
+    
+    background_genes = background_geneset.copy()
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers = n_jobs) as executor:
+
+        futures = {executor.submit(_get_multiple_enrichment_data_with_background, 
+                                   geneset, 
+                                   background_genes, 
+                                   database, 
+                                   annot_colname, 
+                                   annot): geneset for geneset in geneset_list for database in dblist}
+        
+        pbar = tqdm(total=len(geneset_list), desc='Processing genesets')
+        
+        for future in as_completed(futures):
+            geneset = futures[future]
+            pbar.update(1)
+        
+    pbar.close()
+
+    return geneset_list

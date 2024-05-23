@@ -13,10 +13,13 @@ class geneset:
     
     
     def __repr__(self) :
+        
         return f"geneset object [name: {self.name}, number of genes: {len(self.genes)}, number of GO_dataframes: {len(self.GO)}]"
     
     def resetGO(self) :
+        
         self.GO = []
+        
         return self
     
 

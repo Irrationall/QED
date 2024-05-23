@@ -7,6 +7,9 @@ if TYPE_CHECKING:
     from anndata import AnnData
 
 
+
+
+# Wrapper for calculate time
 def calc_time(func):
     def wrapper(*args, **kwargs):
         start_time = time.time()
@@ -15,6 +18,8 @@ def calc_time(func):
         print(f"Execution time for {func.__name__}: {end_time - start_time} seconds")
         return result
     return wrapper
+
+
 
 
 @calc_time
