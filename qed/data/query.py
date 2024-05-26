@@ -7,6 +7,7 @@ from tqdm import tqdm
 import pandas as pd
 import requests
 import json
+import copy
 
 
 
@@ -115,9 +116,16 @@ def _get_multiple_enrichment_data(geneset: geneset,
         annot = annot if annot is not None else geneset.name
         result_df = get_enrichment_data(geneset.genes, database, annot_colname, annot)
         geneset.GO.append(result_df)
+
+        if geneset.params:
+            geneset.params.clear()
     
     except Exception as e:
         print(f"Error processing {geneset.name} for {database}: {str(e)}")
+        
+        geneset.params['database'] = database
+        geneset.params['annot_colname'] = annot_colname
+        geneset.params['annot'] = annot
 
     return geneset
 
@@ -154,7 +162,10 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
                               dblist: List, 
                               annot_colname: str, 
                               annot: Any = None, 
-                              n_jobs: int = None):
+                              n_jobs: int = None,
+                              handle_error: bool = False,
+                              max_iter: int = 10):
+    
     """
     Retrieves enrichment dataframes for a list of genesets from multiple databases.
 
@@ -166,6 +177,8 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
         annot_colname (str): The column name in the database for annotation.
 
         annot (Any, optional): Additional annotation information. Defaults to None.
+
+        max_iter (int, optional): The maximum number of iterations to run. Defaults to 10.
         
         n_jobs (int, optional): The number of parallel jobs to run. Defaults to None.
 
@@ -183,12 +196,33 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
         pbar = tqdm(total=len(geneset_list), desc='Processing genesets')
         
         for future in concurrent.futures.as_completed(futures):
+
             geneset = futures[future]
             pbar.update(1)
         
     pbar.close()
 
-    return geneset_list
+    if handle_error :
+
+        max_iter = max_iter
+        iter_count = 0
+
+        while any(geneset.params for geneset in geneset_list) or iter_count < max_iter:
+            
+            for geneset in geneset_list:
+                
+                if geneset.params:
+
+                    geneset = _get_multiple_enrichment_data(geneset, 
+                                                            geneset.params['database'], 
+                                                            geneset.params['annot_colname'], 
+                                                            geneset.params['annot'])
+                    
+                    print(f'{geneset.name} error revised!')
+
+            iter_count += 1
+
+        return geneset_list
 
 
 
@@ -395,3 +429,23 @@ def get_enrichment_dataframes_with_background(geneset_list: List[geneset],
     pbar.close()
 
     return geneset_list
+
+
+
+
+# Find terms that contain a given gene
+
+def find_terms_with_gene(gene: str) :
+
+    ENRICHR_URL = 'https://maayanlab.cloud/Enrichr/genemap'
+    query_string = '?json=true&setup=true&gene=%s'
+    gene = gene
+
+    response = requests.get(ENRICHR_URL + query_string % gene)
+    
+    if not response.ok:
+        raise Exception('Error searching for terms')
+        
+    data = json.loads(response.text)
+
+    return data
