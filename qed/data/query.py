@@ -117,15 +117,12 @@ def _get_multiple_enrichment_data(geneset: geneset,
         result_df = get_enrichment_data(geneset.genes, database, annot_colname, annot)
         geneset.GO.append(result_df)
 
-        if geneset.params:
-            geneset.params.clear()
-    
-    except Exception as e:
-        print(f"Error processing {geneset.name} for {database}: {str(e)}")
-        
-        geneset.params['database'] = database
         geneset.params['annot_colname'] = annot_colname
         geneset.params['annot'] = annot
+    
+    except Exception as e:
+        
+        print(f"Error processing {geneset.name} for {database}: {str(e)}")
 
     return geneset
 
@@ -166,6 +163,11 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
                               handle_error: bool = False,
                               max_iter: int = 10):
     
+    _geneset_list = copy.deepcopy(geneset_list)
+
+    for geneset in _geneset_list:
+        geneset.params['database'] = dblist
+    
     """
     Retrieves enrichment dataframes for a list of genesets from multiple databases.
 
@@ -191,7 +193,7 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
                                    geneset, 
                                    database, 
                                    annot_colname, 
-                                   annot): geneset for geneset in geneset_list for database in dblist}
+                                   annot): geneset for geneset in _geneset_list for database in dblist}
         
         pbar = tqdm(total=len(geneset_list), desc='Processing genesets')
         
@@ -202,27 +204,56 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
         
     pbar.close()
 
+
+    # Re-request for geneset that has error
     if handle_error :
+
+        print('Trying to re-request...')
+
+        geneset_list_2 = copy.deepcopy(_geneset_list)
+
+        for geneset in geneset_list_2:
+            
+            len_success = len(geneset.GO)
+            db_successs = [df['Database'].values[0] for df in geneset.GO]
+            retry_db = [db for db in geneset.params['database'] if db not in db_successs]
+
+            if len_success < len(geneset.params['database']) :
+                geneset.params['re_request'] = retry_db
+            else :
+                geneset.params['re_request'] = []
+
+        if all([len(geneset.params['re_request']) == 0 for geneset in geneset_list_2]):
+            print("Nothing to re-request")
 
         max_iter = max_iter
         iter_count = 0
 
-        while any(geneset.params for geneset in geneset_list) or iter_count < max_iter:
-            
-            for geneset in geneset_list:
-                
-                if geneset.params:
+        # Copilot version. Have to handle it.
+        while any([len(geneset.params['re_request']) > 0 for geneset in geneset_list_2]) and iter_count < max_iter :
 
-                    geneset = _get_multiple_enrichment_data(geneset, 
-                                                            geneset.params['database'], 
-                                                            geneset.params['annot_colname'], 
-                                                            geneset.params['annot'])
+            for geneset in geneset_list_2:
+                
+                for database in geneset.params['re_request']:
                     
-                    print(f'{geneset.name} error revised!')
+                    _get_multiple_enrichment_data(geneset, database, annot_colname, annot)
+
+                    print(f'{geneset.name} with {database} completed!')
+
+            for geneset in geneset_list_2:
+                
+                len_success = len(geneset.GO)
+                db_successs = [df['Database'].values[0] for df in geneset.GO]
+                retry_db = [db for db in geneset.params['re_request'] if db not in db_successs]
+
+                if len_success < len(geneset.params['database']) :
+                    geneset.params['re_request'] = retry_db
+                else :
+                    geneset.params['re_request'] = []
 
             iter_count += 1
 
-        return geneset_list
+    return geneset_list_2 if handle_error else _geneset_list
 
 
 
