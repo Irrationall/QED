@@ -87,18 +87,27 @@ alist
 # Example dblist of EnrichR
 
 dblist = ['KEGG_2021_Human','Reactome_2022','MSigDB_Hallmark_2020',
-          'GO_Biological_Process_2021', 'WikiPathway_2023_Human']
+          'GO_Biological_Process_2023', 'WikiPathway_2023_Human']
 ```
 
 
 ```python
 # Add gene enrichment dataframe to geneset object
 
-aalist = get_enrichment_dataframes(alist, dblist, "Celltype", n_jobs=None)
+aalist = get_enrichment_dataframes(geneset_list = alist, 
+                                   dblist = dblist, 
+                                   annot_colname = "Celltype",
+                                   n_jobs=None,
+                                   handle_error = True,
+                                   max_iter = 5
+                                   )
 ```
 
 
     Processing genesets:   0%|          | 0/7 [00:00<?, ?it/s]
+    Processing genesets: 35it [00:04,  7.47it/s]                      
+    Trying to re-request...
+    Nothing to re-request
 
 
 

@@ -179,10 +179,12 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
         annot_colname (str): The column name in the database for annotation.
 
         annot (Any, optional): Additional annotation information. Defaults to None.
-
-        max_iter (int, optional): The maximum number of iterations to run. Defaults to 10.
         
         n_jobs (int, optional): The number of parallel jobs to run. Defaults to None.
+
+        handle_error (bool, optional): Whether to handle errors. Defaults to False.
+
+        max_iter (int, optional): The maximum number of iterations to run. Defaults to 10.
 
     Returns:
         List[geneset]: The input geneset list.
