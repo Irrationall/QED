@@ -1,10 +1,12 @@
 from dataclasses import dataclass, asdict, field
 import pandas as pd
+import pkg_resources
 from typing import List, Dict
 
 
 @dataclass
 class geneset:
+    
     name: str
     genes: List[str]
     annotation: str = None
@@ -69,4 +71,83 @@ def merge_df(geneset_list: List[geneset], term_suffix: bool = True) :
 
 
 
+
+# DB list
+
+@dataclass
+class EnrichR_DB:
+
+    db: list = field(default_factory=list)
+
+    def add_info(self, info):
+        self.db.append(info)
+
+    def __repr__(self) :
+        
+        return f"ENRICHR DATABASE\n[number of databases: {len(self.db)}]"
+    
+    @property
+    def categories(self):
+        return list(set(info.category for info in self.db))
+
+    def search_DB(self, 
+                  category: List[str] = None, 
+                  is_latest: bool = True,
+                  by_name: str = None):
+        
+        if is_latest == True:
+            db_list = [db for db in self.db if db.category in category and db.is_latest == True]
+            
+            if by_name is not None:
+                db_list = [db for db in db_list if by_name.lower() in db.name.lower()]
+
+        else:
+            db_list = [db for db in self.db if db.category in category]
+            
+            if by_name is not None:
+                db_list = [db for db in db_list if by_name.lower() in db.name.lower()]
+
+        return db_list 
+
+
+
+
+@dataclass
+class EnrichR_DB_info :
+    
+    name: str
+    category: str
+    description: str
+    number_of_terms: int
+    gene_coverage: int
+    genes_per_term: int
+    is_latest: bool 
+    
+    db: EnrichR_DB = field(default_factory=EnrichR_DB)
+
+    def __post_init__(self):
+        self.db.add_info(self)
+
+    def __repr__(self) :
+        
+        return f"name: {self.name} / category: {self.category}\n"
+
+
+ENRICHR_DB = EnrichR_DB()
+
+# file contains EnrichR database information
+file_path = pkg_resources.resource_filename('qed.data', 'DB/EnrichR_DB_list.csv')
+DB_DF = pd.read_csv(file_path)
+
+for _, row in DB_DF.iterrows():
+    EnrichR_DB_info(
+        name = row['DB'],
+        category = row['Category'],
+        description =  row['Description'],
+        number_of_terms = row['Terms'],
+        gene_coverage=row['Gene coverage'],
+        genes_per_term=row['Genes per term'],
+        is_latest=row['is_latest'],
+        db=ENRICHR_DB
+    )
 

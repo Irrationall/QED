@@ -5,6 +5,9 @@ setup(
     version='0.1',
     author='JS Seo',
     description='Querying several gene sets to EnrichR at once',
+    package_data={
+        'qed.data': ['DB/*.csv'],
+    },
     install_requires=[
         'tqdm',
         'pandas',

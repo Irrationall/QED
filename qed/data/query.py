@@ -111,6 +111,19 @@ def _get_multiple_enrichment_data(geneset: geneset,
                                   database: str, 
                                   annot_colname: str, 
                                   annot: Any = None):
+    """
+    Get multiple enrichment data.
+
+    Args:
+
+        geneset (geneset): The geneset object containing the genes of interest.
+
+        database (str): The name of the database to query.
+
+        annot_colname (str): The name of the column containing annotations in the database.
+
+        annot (Any, optional): The annotation to use. Defaults to None. 
+    """
     
     try:
         annot = annot if annot is not None else geneset.name
@@ -231,14 +244,16 @@ def get_enrichment_dataframes(geneset_list: List[geneset],
         max_iter = max_iter
         iter_count = 0
 
-        # Copilot version. Have to handle it.
         while any([len(geneset.params['re_request']) > 0 for geneset in geneset_list_2]) and iter_count < max_iter :
 
             for geneset in geneset_list_2:
                 
                 for database in geneset.params['re_request']:
                     
-                    _get_multiple_enrichment_data(geneset, database, annot_colname, annot)
+                    _get_multiple_enrichment_data(geneset, 
+                                                  database, 
+                                                  annot_colname, 
+                                                  annot)
 
                     print(f'{geneset.name} with {database} completed!')
 
@@ -382,7 +397,11 @@ def _get_multiple_enrichment_data_with_background(
         )
         geneset.GO.append(result_df)
 
+        geneset.params['annot_colname'] = annot_colname
+        geneset.params['annot'] = annot
+
     except Exception as e:
+        
         print(f"Error processing {geneset.name} for {database}: {str(e)}")
 
     return geneset
@@ -421,7 +440,9 @@ def get_enrichment_dataframes_with_background(geneset_list: List[geneset],
                               dblist: List, 
                               annot_colname: str, 
                               annot: Any =None, 
-                              n_jobs: int = None):
+                              n_jobs: int = None,
+                              handle_error: bool = False,
+                              max_iter: int = 10):
     """
     Get enrichment dataframes with background genes.
 
@@ -441,7 +462,8 @@ def get_enrichment_dataframes_with_background(geneset_list: List[geneset],
     Returns:
         List[geneset]: The list of genesets.
     """
-    
+
+    _geneset_list = copy.deepcopy(geneset_list)
     background_genes = background_geneset.copy()
 
     with concurrent.futures.ThreadPoolExecutor(max_workers = n_jobs) as executor:
@@ -451,7 +473,7 @@ def get_enrichment_dataframes_with_background(geneset_list: List[geneset],
                                    background_genes, 
                                    database, 
                                    annot_colname, 
-                                   annot): geneset for geneset in geneset_list for database in dblist}
+                                   annot): geneset for geneset in _geneset_list for database in dblist}
         
         pbar = tqdm(total=len(geneset_list), desc='Processing genesets')
         
@@ -461,7 +483,58 @@ def get_enrichment_dataframes_with_background(geneset_list: List[geneset],
         
     pbar.close()
 
-    return geneset_list
+    # Re-request for geneset that has error
+    if handle_error :
+
+        print('Trying to re-request...')
+
+        geneset_list_2 = copy.deepcopy(_geneset_list)
+
+        for geneset in geneset_list_2:
+            
+            len_success = len(geneset.GO)
+            db_successs = [df['Database'].values[0] for df in geneset.GO]
+            retry_db = [db for db in geneset.params['database'] if db not in db_successs]
+
+            if len_success < len(geneset.params['database']) :
+                geneset.params['re_request'] = retry_db
+            else :
+                geneset.params['re_request'] = []
+
+        if all([len(geneset.params['re_request']) == 0 for geneset in geneset_list_2]):
+            print("Nothing to re-request")
+
+        max_iter = max_iter
+        iter_count = 0
+
+        while any([len(geneset.params['re_request']) > 0 for geneset in geneset_list_2]) and iter_count < max_iter :
+
+            for geneset in geneset_list_2:
+                
+                for database in geneset.params['re_request']:
+                    
+                    _get_multiple_enrichment_data_with_background(geneset, 
+                                                                  background_genes,
+                                                                  database, 
+                                                                  annot_colname, 
+                                                                  annot)
+
+                    print(f'{geneset.name} with {database} completed!')
+
+            for geneset in geneset_list_2:
+                
+                len_success = len(geneset.GO)
+                db_successs = [df['Database'].values[0] for df in geneset.GO]
+                retry_db = [db for db in geneset.params['re_request'] if db not in db_successs]
+
+                if len_success < len(geneset.params['database']) :
+                    geneset.params['re_request'] = retry_db
+                else :
+                    geneset.params['re_request'] = []
+
+            iter_count += 1
+
+    return geneset_list_2 if handle_error else _geneset_list
 
 
 

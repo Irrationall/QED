@@ -1,0 +1,227 @@
+﻿DB,Terms,Gene coverage,Genes per term,Category,is_latest,Description
+Achilles_fitness_decrease,216,4271,128,Diseases/Drugs,TRUE,Identifying and cataloging gene essentiality across hundreds of genomically characterized cancer cell lines
+Achilles_fitness_increase,216,4320,129,Diseases/Drugs,TRUE,Identifying and cataloging gene essentiality across hundreds of genomically characterized cancer cell lines
+Aging_Perturbations_from_GEO_down,286,16129,292,Crowd,TRUE,From gene expression omnibus (GEO)
+Aging_Perturbations_from_GEO_up,286,15309,308,Crowd,TRUE,From gene expression omnibus (GEO)
+Allen_Brain_Atlas_10x_scRNA_2021,766,12361,124,Cell Types,TRUE,From Allen Institute for Brain Science
+Allen_Brain_Atlas_down,2192,13877,304,Cell Types,TRUE,From Allen Institute for Brain Science
+Allen_Brain_Atlas_up,2192,13121,305,Cell Types,TRUE,From Allen Institute for Brain Science
+ARCHS4_Cell-lines,125,23601,2395,Cell Types,TRUE,All RNA-seq and ChIP-seq sample and signature search (ARCHS4) is a resource that provides access to gene and transcript counts uniformly processed from all human and mouse RNA-seq experiments from the Gene Expression Omnibus (GEO) and the Sequence Read Archive (SRA)
+ARCHS4_IDG_Coexp,352,20883,299,Diseases/Drugs,TRUE,All RNA-seq and ChIP-seq sample and signature search (ARCHS4) is a resource that provides access to gene and transcript counts uniformly processed from all human and mouse RNA-seq experiments from the Gene Expression Omnibus (GEO) and the Sequence Read Archive (SRA)
+ARCHS4_Kinases_Coexp,498,19612,299,Pathways,TRUE,All RNA-seq and ChIP-seq sample and signature search (ARCHS4) is a resource that provides access to gene and transcript counts uniformly processed from all human and mouse RNA-seq experiments from the Gene Expression Omnibus (GEO) and the Sequence Read Archive (SRA)
+ARCHS4_TFs_Coexp,1724,25983,299,Transcription,TRUE,All RNA-seq and ChIP-seq sample and signature search (ARCHS4) is a resource that provides access to gene and transcript counts uniformly processed from all human and mouse RNA-seq experiments from the Gene Expression Omnibus (GEO) and the Sequence Read Archive (SRA)
+ARCHS4_Tissues,108,21809,2316,Cell Types,TRUE,All RNA-seq and ChIP-seq sample and signature search (ARCHS4) is a resource that provides access to gene and transcript counts uniformly processed from all human and mouse RNA-seq experiments from the Gene Expression Omnibus (GEO) and the Sequence Read Archive (SRA)
+Azimuth_2023,1425,3712,9,Cell Types,TRUE,"Azimuth is a web application that uses an annotated reference dataset to automate the processing, analysis, and interpretation of a new single-cell RNA-seq or ATAC-seq experiment"
+Azimuth_Cell_Types_2021,341,1683,10,Cell Types,FALSE,"Azimuth is a web application that uses an annotated reference dataset to automate the processing, analysis, and interpretation of a new single-cell RNA-seq or ATAC-seq experiment"
+BioCarta_2013,249,1295,18,Pathways,FALSE,NA
+BioCarta_2015,239,1678,21,Pathways,FALSE,NA
+BioCarta_2016,237,1348,19,Pathways,TRUE,NA
+BioPlanet_2019,1510,9813,49,Pathways,TRUE,"The NCATS BioPlanet is a comprehensive, publicly accessible informatics resource that catalogues all pathways, their healthy and disease state annotations, and targets within and relationships among them."
+BioPlex_2017,3915,10271,22,Pathways,TRUE,PROFILING PROTEIN INTERACTIONS IN HUMAN CELLS VIA AFFINITY-PURIFICATION MASS SPECTROMETRY AND SYSTEMATICALLY ANALYZING INTERACTIONS FOR ALL ACCESSIBLE HUMAN PROTEINS AT PROTEOME SCALE.
+Cancer_Cell_Line_Encyclopedia,967,15797,176,Cell Types,TRUE,From CCLE
+CCLE_Proteomics_2020,378,11851,586,Cell Types,TRUE,From CCLE
+CellMarker_2024,1692,12642,30,Cell Types,TRUE,NA
+CellMarker_Augmented_2021,1097,14167,80,Cell Types,TRUE,NA
+ChEA_2013,353,47172,1370,Transcription,FALSE,"ChEA3 is a web-based TFEA (TF Enrichment analysis) tool. Hence, ChEA3 can aid in identifying the TFs responsible for observed changes in gene expression when comparing control and perturbation samples."
+ChEA_2015,395,48230,1429,Transcription,FALSE,"ChEA3 is a web-based TFEA (TF Enrichment analysis) tool. Hence, ChEA3 can aid in identifying the TFs responsible for observed changes in gene expression when comparing control and perturbation samples."
+ChEA_2016,645,49238,1550,Transcription,FALSE,"ChEA3 is a web-based TFEA (TF Enrichment analysis) tool. Hence, ChEA3 can aid in identifying the TFs responsible for observed changes in gene expression when comparing control and perturbation samples."
+ChEA_2022,757,18365,1214,Transcription,TRUE,"ChEA3 is a web-based TFEA (TF Enrichment analysis) tool. Hence, ChEA3 can aid in identifying the TFs responsible for observed changes in gene expression when comparing control and perturbation samples."
+Chromosome_Location,386,32740,85,Misc,FALSE,NA
+Chromosome_Location_hg19,36,27360,802,Misc,TRUE,NA
+ClinVar_2019,182,1397,13,Diseases/Drugs,TRUE,ClinVar aggregates information about genomic variation and its relationship to human health.
+CORUM,1658,2741,5,Pathways,TRUE,NA
+COVID-19_Related_Gene_Sets,205,16979,295,Diseases/Drugs,FALSE,NA
+COVID-19_Related_Gene_Sets_2021,478,16853,360,Diseases/Drugs,TRUE,NA
+Data_Acquisition_Method_Most_Popular_Genes,12,1073,100,Misc,TRUE,NA
+dbGaP,345,5613,36,Diseases/Drugs,TRUE,NA
+DepMap_WG_CRISPR_Screens_Broad_CellLines_2019,558,7744,363,Diseases/Drugs,TRUE,The goal of the Dependency Map (DepMap) portal is to empower the research community to make discoveries related to cancer vulnerabilities
+DepMap_WG_CRISPR_Screens_Sanger_CellLines_2019,325,6204,387,Diseases/Drugs,TRUE,The goal of the Dependency Map (DepMap) portal is to empower the research community to make discoveries related to cancer vulnerabilities
+Descartes_Cell_Types_and_Tissue_2021,172,9763,139,Cell Types,TRUE,Human gene expression during development
+Diabetes_Perturbations_GEO_2022,601,13525,175,Diseases/Drugs,TRUE,NA
+Disease_Perturbations_from_GEO_down,839,23939,293,Crowd,TRUE,From gene expression omnibus (GEO)
+Disease_Perturbations_from_GEO_up,839,23561,307,Crowd,TRUE,From gene expression omnibus (GEO)
+Disease_Signatures_from_GEO_down_2014,142,15406,300,Legacy,FALSE,From gene expression omnibus (GEO)
+Disease_Signatures_from_GEO_up_2014,142,15057,300,Legacy,FALSE,From gene expression omnibus (GEO)
+DisGeNET,9828,17464,63,Diseases/Drugs,TRUE,DisGeNET is a discovery platform containing one of the largest publicly available collections of genes and variants associated to human diseases
+Drug_Perturbations_from_GEO_2014,701,47107,509,Legacy,FALSE,From gene expression omnibus (GEO)
+Drug_Perturbations_from_GEO_down,906,23877,302,Crowd,TRUE,From gene expression omnibus (GEO)
+Drug_Perturbations_from_GEO_up,906,24350,299,Crowd,TRUE,From gene expression omnibus (GEO)
+DrugMatrix,7876,5209,300,Diseases/Drugs,TRUE,NA
+DSigDB,4026,19513,117,Diseases/Drugs,TRUE,NA
+Elsevier_Pathway_Collection,1721,5718,31,Pathways,TRUE,NA
+ENCODE_and_ChEA_Consensus_TFs_from_ChIP-X,104,15562,887,Transcription,TRUE,NA
+ENCODE_Histone_Modifications_2013,109,15852,912,Transcription,FALSE,ENCODE at UCSC
+ENCODE_Histone_Modifications_2015,412,29065,2123,Transcription,TRUE,ENCODE at UCSC
+ENCODE_TF_ChIP-seq_2014,498,21493,3713,Transcription,FALSE,ENCODE at UCSC
+ENCODE_TF_ChIP-seq_2015,816,26382,1811,Transcription,TRUE,ENCODE at UCSC
+Enrichr_Libraries_Most_Popular_Genes,121,5902,109,Misc,TRUE,NA
+Enrichr_Submissions_TF-Gene_Coocurrence,1722,12486,299,Transcription,TRUE,NA
+Enrichr_Users_Contributed_Lists_2020,1482,54974,483,Misc,TRUE,NA
+Epigenomics_Roadmap_HM_ChIP-seq,383,22288,4368,Transcription,TRUE,NA
+ESCAPE,315,25651,807,Cell Types,TRUE,Embryonic  stem cell atlas of pluripotency evidence
+FANTOM6_lncRNA_KD_DEGs,350,13697,343,Transcription,TRUE,FANTOM (Functional ANnoTation Of the Mammalian genome) is a worldwide collaborative project aiming at identifying all functional elements in mammalian genomes.
+GeDiPNet_2023,2388,12081,50,Diseases/Drugs,TRUE,"GeDiPNet is an open access, unified database on human Gene Disease Pathway Networks. The gene-disease associations are fetched from multiple data sources (DisGeNET, ClinGen, ClinVar, HPO, OrphaNet, and PsyGeNET) and are manually curated to reduce redundancy and at the same time minimise data loss."
+Gene_Perturbations_from_GEO_down,2460,30832,302,Crowd,TRUE,From gene expression omnibus (GEO)
+Gene_Perturbations_from_GEO_up,2460,31132,298,Crowd,TRUE,From gene expression omnibus (GEO)
+Genes_Associated_with_NIH_Grants,32876,15886,9,Misc,TRUE,NA
+GeneSigDB,2139,23726,127,Diseases/Drugs,TRUE,NA
+Genome_Browser_PWMs,615,13362,275,Transcription,TRUE,NA
+GlyGen_Glycosylated_Proteins_2022,338,1882,47,Pathways,TRUE,GlyGen is a data integration and dissemination project for carbohydrate and glycoconjugate related data
+GO_Biological_Process_2013,941,7682,78,Ontologies,FALSE,Gene Ontology Consortium
+GO_Biological_Process_2015,5192,14264,58,Ontologies,FALSE,Gene Ontology Consortium
+GO_Biological_Process_2017,3166,13822,21,Ontologies,FALSE,Gene Ontology Consortium
+GO_Biological_Process_2017b,10125,13247,49,Ontologies,FALSE,Gene Ontology Consortium
+GO_Biological_Process_2018,5103,14433,36,Ontologies,FALSE,Gene Ontology Consortium
+GO_Biological_Process_2021,6036,14937,33,Ontologies,FALSE,Gene Ontology Consortium
+GO_Biological_Process_2023,5407,14698,33,Ontologies,TRUE,Gene Ontology Consortium
+GO_Cellular_Component_2013,205,7324,172,Ontologies,FALSE,Gene Ontology Consortium
+GO_Cellular_Component_2015,641,13236,82,Ontologies,FALSE,Gene Ontology Consortium
+GO_Cellular_Component_2017,636,10427,38,Ontologies,FALSE,Gene Ontology Consortium
+GO_Cellular_Component_2017b,816,8002,143,Ontologies,FALSE,Gene Ontology Consortium
+GO_Cellular_Component_2018,446,8655,61,Ontologies,FALSE,Gene Ontology Consortium
+GO_Cellular_Component_2021,511,11497,80,Ontologies,FALSE,Gene Ontology Consortium
+GO_Cellular_Component_2023,474,10972,85,Ontologies,TRUE,Gene Ontology Consortium
+GO_Molecular_Function_2013,402,8469,122,Ontologies,FALSE,Gene Ontology Consortium
+GO_Molecular_Function_2015,1136,12753,57,Ontologies,FALSE,Gene Ontology Consortium
+GO_Molecular_Function_2017,972,10601,25,Ontologies,FALSE,Gene Ontology Consortium
+GO_Molecular_Function_2017b,3271,10089,45,Ontologies,FALSE,Gene Ontology Consortium
+GO_Molecular_Function_2018,1151,11459,39,Ontologies,FALSE,Gene Ontology Consortium
+GO_Molecular_Function_2021,1274,11936,34,Ontologies,FALSE,Gene Ontology Consortium
+GO_Molecular_Function_2023,1147,12126,38,Ontologies,TRUE,Gene Ontology Consortium
+GTEx_Aging_Signatures_2021,270,11980,250,Diseases/Drugs,TRUE,GTEx Portal
+GTEx_Tissue_Expression_Down,2918,16725,1443,Cell Types,TRUE,GTEx Portal
+GTEx_Tissue_Expression_Up,2918,19249,1443,Cell Types,TRUE,GTEx Portal
+GTEx_Tissues_V8_2023,511,8076,96,Cell Types,TRUE,GTEx Portal
+GWAS_Catalog_2019,1737,19378,37,Diseases/Drugs,FALSE,The NHGRI-EBI Catalog of human genome-wide association studies
+GWAS_Catalog_2023,5271,18290,34,Diseases/Drugs,TRUE,The NHGRI-EBI Catalog of human genome-wide association studies
+HDSigDB_Human_2021,2564,31158,805,Diseases/Drugs,TRUE,Open Source Science for the HD Research Community
+HDSigDB_Mouse_2021,2579,30006,815,Diseases/Drugs,TRUE,Open Source Science for the HD Research Community
+HMDB_Metabolites,3906,3723,47,Misc,TRUE,The Human Metabolome Database 
+HMS_LINCS_KinomeScan,148,394,73,Pathways,TRUE,Library of Integrated Network-baased Cellular Signatures
+HomoloGene,12,19129,1594,Misc,TRUE,NA
+HuBMAP_ASCT_plus_B_augmented_w_RNAseq_Coexpression,344,5833,100,Cell Types,TRUE,The Human BioMolecular Atlas Progam
+HuBMAP_ASCTplusB_augmented_2022,777,13366,103,Cell Types,TRUE,The Human BioMolecular Atlas Progam
+Human_Gene_Atlas,84,13373,258,Cell Types,TRUE,From BioGPS
+Human_Phenotype_Ontology,1779,3096,31,Ontologies,TRUE,The Human Phenotype Ontology (HPO) provides a standardized vocabulary of phenotypic abnormalities encountered in human disease.
+HumanCyc_2015,125,756,12,Pathways,FALSE,"HumanCyc provides an encyclopedic reference on human metabolic pathways, the human genome, and human metabolites."
+HumanCyc_2016,152,934,13,Pathways,TRUE,"HumanCyc provides an encyclopedic reference on human metabolic pathways, the human genome, and human metabolites."
+huMAP,995,2243,19,Pathways,TRUE,Human Protein Complex Map
+IDG_Drug_Targets_2022,888,1552,16,Diseases/Drugs,TRUE,From DrugCentral
+InterPro_Domains_2019,1071,12444,23,Misc,TRUE,InterPro provides functional analysis of proteins by classifying them into families and predicting domains and important sites.
+Jensen_COMPARTMENTS,2283,18329,161,Ontologies,TRUE,From JensenLab
+Jensen_DISEASES,1811,15755,28,Ontologies,TRUE,From JensenLab
+Jensen_TISSUES,1842,19586,545,Ontologies,TRUE,From JensenLab
+KEA_2013,474,4533,37,Pathways,FALSE,"ChEA3 is a web-based TFEA (TF Enrichment analysis) tool. Hence, ChEA3 can aid in identifying the TFs responsible for observed changes in gene expression when comparing control and perturbation samples."
+KEA_2015,428,3102,25,Pathways,TRUE,"ChEA3 is a web-based TFEA (TF Enrichment analysis) tool. Hence, ChEA3 can aid in identifying the TFs responsible for observed changes in gene expression when comparing control and perturbation samples."
+KEGG_2013,200,4128,48,Pathways,FALSE,Kyoto Encyclopedia of Genes and Genomes
+KEGG_2015,179,3800,48,Pathways,FALSE,Kyoto Encyclopedia of Genes and Genomes
+KEGG_2016,293,7010,87,Pathways,FALSE,Kyoto Encyclopedia of Genes and Genomes
+KEGG_2019_Human,308,7802,92,Pathways,FALSE,Kyoto Encyclopedia of Genes and Genomes
+KEGG_2019_Mouse,303,8551,98,Pathways,TRUE,Kyoto Encyclopedia of Genes and Genomes
+KEGG_2021_Human,320,8078,102,Pathways,TRUE,Kyoto Encyclopedia of Genes and Genomes
+Kinase_Perturbations_from_GEO_down,285,17850,300,Pathways,TRUE,From gene expression omnibus (GEO)
+Kinase_Perturbations_from_GEO_up,285,17660,300,Pathways,TRUE,From gene expression omnibus (GEO)
+KOMP2_Mouse_Phenotypes_2022,529,6713,68,Ontologies,TRUE,From International Mouse Phenotyping Consortium
+L1000_Kinase_and_GPCR_Perturbations_down,3644,12668,300,Legacy,FALSE,NA
+L1000_Kinase_and_GPCR_Perturbations_up,3644,12638,300,Legacy,FALSE,NA
+Ligand_Perturbations_from_GEO_down,261,15090,282,Crowd,TRUE,From gene expression omnibus (GEO)
+Ligand_Perturbations_from_GEO_up,261,15103,318,Crowd,TRUE,From gene expression omnibus (GEO)
+LINCS_L1000_Chem_Pert_Consensus_Sigs,10850,9525,245,Diseases/Drugs,TRUE,From SigCom LINCS
+LINCS_L1000_Chem_Pert_down,33132,9448,63,Diseases/Drugs,FALSE,From SigCom LINCS
+LINCS_L1000_Chem_Pert_up,33132,9559,73,Diseases/Drugs,FALSE,From SigCom LINCS
+LINCS_L1000_CRISPR_KO_Consensus_Sigs,10424,9440,245,Diseases/Drugs,TRUE,From SigCom LINCS
+LINCS_L1000_Ligand_Perturbations_down,96,3788,159,Legacy,FALSE,From SigCom LINCS
+LINCS_L1000_Ligand_Perturbations_up,96,3357,153,Legacy,FALSE,From SigCom LINCS
+lncHUB_lncRNA_Co-Expression,3729,18704,100,Transcription,TRUE,Functional predictions of human long non-coding RNAs based on gene co-expression data
+MAGMA_Drugs_and_Diseases,1395,2183,18,Diseases/Drugs,TRUE,NA
+MAGNET_2023,72,12853,485,Cell Types,TRUE,NA
+MCF7_Perturbations_from_GEO_down,401,15022,290,Crowd,TRUE,From gene expression omnibus (GEO)
+MCF7_Perturbations_from_GEO_up,401,15676,310,Crowd,TRUE,From gene expression omnibus (GEO)
+Metabolomics_Workbench_Metabolites_2022,233,936,15,Pathways,TRUE,From UCSD Metabolomics Workbench
+MGI_Mammalian_Phenotype_2013,476,10496,201,Ontologies,FALSE,"MGI is the international database resource for the laboratory mouse, providing integrated genetic, genomic, and biological data to facilitate the study of human health and disease."
+MGI_Mammalian_Phenotype_2017,5231,8184,24,Ontologies,FALSE,"MGI is the international database resource for the laboratory mouse, providing integrated genetic, genomic, and biological data to facilitate the study of human health and disease."
+MGI_Mammalian_Phenotype_Level_3,71,10406,715,Ontologies,FALSE,"MGI is the international database resource for the laboratory mouse, providing integrated genetic, genomic, and biological data to facilitate the study of human health and disease."
+MGI_Mammalian_Phenotype_Level_4,476,10493,200,Ontologies,FALSE,"MGI is the international database resource for the laboratory mouse, providing integrated genetic, genomic, and biological data to facilitate the study of human health and disease."
+MGI_Mammalian_Phenotype_Level_4_2019,5261,13420,32,Ontologies,FALSE,"MGI is the international database resource for the laboratory mouse, providing integrated genetic, genomic, and biological data to facilitate the study of human health and disease."
+MGI_Mammalian_Phenotype_Level_4_2021,4601,9767,33,Ontologies,TRUE,"MGI is the international database resource for the laboratory mouse, providing integrated genetic, genomic, and biological data to facilitate the study of human health and disease."
+Microbe_Perturbations_from_GEO_down,312,15854,279,Crowd,TRUE,From gene expression omnibus (GEO)
+Microbe_Perturbations_from_GEO_up,312,15015,321,Crowd,TRUE,From gene expression omnibus (GEO)
+miRTarBase_2017,3240,14893,128,Transcription,TRUE,NA
+MoTrPAC_2023,225,10428,115,Cell Types,TRUE,Molecular Transducers of Physical Activity Consortium
+Mouse_Gene_Atlas,96,19270,388,Cell Types,TRUE,From BioGPS
+MSigDB_Computational,858,10061,106,Diseases/Drugs,TRUE,Human Molecular Signatures Database
+MSigDB_Hallmark_2020,50,4383,146,Pathways,TRUE,Human Molecular Signatures Database
+MSigDB_Oncogenic_Signatures,189,11250,166,Diseases/Drugs,TRUE,Human Molecular Signatures Database
+NCI-60_Cancer_Cell_Lines,93,12232,343,Cell Types,TRUE,From BioGPS
+NCI-Nature_2015,209,2541,39,Pathways,FALSE,NA
+NCI-Nature_2016,209,2541,39,Pathways,TRUE,NA
+NIH_Funded_PIs_2017_AutoRIF_ARCHS4_Predictions,12558,16964,200,Misc,TRUE,NA
+NIH_Funded_PIs_2017_GeneRIF_ARCHS4_Predictions,5684,17258,200,Misc,TRUE,NA
+NIH_Funded_PIs_2017_Human_AutoRIF,12558,13464,45,Misc,TRUE,NA
+NIH_Funded_PIs_2017_Human_GeneRIF,5687,13072,26,Misc,TRUE,NA
+NURSA_Human_Endogenous_Complexome,1796,10231,158,Pathways,TRUE,NA
+Old_CMAP_down,6100,8695,100,Diseases/Drugs,TRUE,NA
+Old_CMAP_up,6100,11251,100,Diseases/Drugs,TRUE,NA
+OMIM_Disease,90,1759,25,Diseases/Drugs,TRUE,An Online Catalog of Human Genes and Genetic Disorders
+OMIM_Expanded,187,2178,89,Diseases/Drugs,TRUE,An Online Catalog of Human Genes and Genetic Disorders
+Orphanet_Augmented_2021,3774,17851,102,Diseases/Drugs,TRUE,NA
+PanglaoDB_Augmented_2021,178,6654,136,Cell Types,TRUE,PanglaoDB is a database for the scientific community interested in exploration of single cell RNA sequencing experiments from mouse and human.
+Panther_2015,104,1918,39,Pathways,FALSE,"PANTHER Pathway consists of over 177, primarily signaling, pathways, each with subfamilies and protein sequences mapped to individual pathway components."
+Panther_2016,112,2041,42,Pathways,TRUE,"PANTHER Pathway consists of over 177, primarily signaling, pathways, each with subfamilies and protein sequences mapped to individual pathway components."
+Pfam_Domains_2019,608,9000,20,Misc,TRUE,NA
+Pfam_InterPro_Domains,311,7588,35,Misc,TRUE,NA
+PFOCR_Pathways,17326,12765,13,Pathways,FALSE,Pathway Figure OCR is an open science project dedicated to extracting pathway information from the published literature to be freely used by anyone
+PFOCR_Pathways_2023,21845,13662,12,Pathways,TRUE,Pathway Figure OCR is an open science project dedicated to extracting pathway information from the published literature to be freely used by anyone
+PhenGenI_Association_2021,950,20414,112,Diseases/Drugs,TRUE,"The Phenotype-Genotype Integrator (PheGenI), merges NHGRI genome-wide association study (GWAS) catalog data with several databases housed at the National Center for Biotechnology Information (NCBI), including Gene, dbGaP, OMIM, eQTL and dbSNP."
+PheWeb_2019,1161,9116,22,Diseases/Drugs,TRUE,NA
+Phosphatase_Substrates_from_DEPOD,59,280,9,Pathways,TRUE,NA
+PPI_Hub_Proteins,385,16399,247,Pathways,TRUE,NA
+Proteomics_Drug_Atlas_2023,1748,8220,146,Diseases/Drugs,TRUE,NA
+ProteomicsDB_2020,913,8189,421,Cell Types,TRUE,NA
+Rare_Diseases_AutoRIF_ARCHS4_Predictions,3725,13787,200,Diseases/Drugs,TRUE,NA
+Rare_Diseases_AutoRIF_Gene_Lists,3725,10471,76,Diseases/Drugs,TRUE,NA
+Rare_Diseases_GeneRIF_ARCHS4_Predictions,2244,13929,200,Diseases/Drugs,TRUE,GeneRIF: Gene Reference into Function
+Rare_Diseases_GeneRIF_Gene_Lists,2244,10352,58,Diseases/Drugs,TRUE,GeneRIF: Gene Reference into Function
+Reactome_2013,78,3185,73,Pathways,FALSE,"REACTOME is an open-source, open access, manually curated and peer-reviewed pathway database."
+Reactome_2015,1389,6768,47,Pathways,FALSE,"REACTOME is an open-source, open access, manually curated and peer-reviewed pathway database."
+Reactome_2016,1530,8973,64,Pathways,FALSE,"REACTOME is an open-source, open access, manually curated and peer-reviewed pathway database."
+Reactome_2022,1818,10489,61,Pathways,TRUE,"REACTOME is an open-source, open access, manually curated and peer-reviewed pathway database."
+RNA-Seq_Disease_Gene_and_Drug_Signatures_from_GEO,1302,22440,505,Crowd,TRUE,From gene expression omnibus (GEO)
+RNAseq_Automatic_GEO_Signatures_Human_Down,4269,26076,250,Crowd,TRUE,From gene expression omnibus (GEO)
+RNAseq_Automatic_GEO_Signatures_Human_Up,4269,26338,250,Crowd,TRUE,From gene expression omnibus (GEO)
+RNAseq_Automatic_GEO_Signatures_Mouse_Down,4216,25381,250,Crowd,TRUE,From gene expression omnibus (GEO)
+RNAseq_Automatic_GEO_Signatures_Mouse_Up,4216,25409,250,Crowd,TRUE,From gene expression omnibus (GEO)
+Rummagene_kinases,3810,19178,218,Pathways,TRUE,NA
+Rummagene_signatures,11130,19434,369,Crowd,TRUE,NA
+Rummagene_transcription_factors,7244,19379,250,Transcription,TRUE,NA
+SILAC_Phosphoproteomics,84,5655,342,Transcription,TRUE,"ChEA3 is a web-based TFEA (TF Enrichment analysis) tool. Hence, ChEA3 can aid in identifying the TFs responsible for observed changes in gene expression when comparing control and perturbation samples."
+SubCell_BarCode,104,12419,491,Transcription,TRUE,NA
+SynGO_2022,118,1198,23,Ontologies,FALSE,Synaptic Gene Ontologies
+SynGO_2024,134,1555,27,Ontologies,TRUE,Synaptic Gene Ontologies
+SysMyo_Muscle_Gene_Sets,1135,19500,137,Crowd,TRUE,NA
+Table_Mining_of_CRISPR_Studies,802,14156,40,Misc,TRUE,NA
+Tabula_Muris,106,3857,80,Cell Types,TRUE,"Tabula Muris is a compendium of single cell transcriptome data from the model organism Mus musculus, containing nearly 100,000 cells from 20 organs and tissues."
+Tabula_Sapiens,469,1509,100,Cell Types,TRUE,"Tabula Sapiens is a benchmark, first-draft human cell atlas of nearly 500,000 cells from 24 organs of 15 normal human subjects."
+TargetScan_microRNA,222,7504,155,Transcription,FALSE,predicted microRNA targets in mammals  
+TargetScan_microRNA_2017,683,17598,1208,Transcription,TRUE,predicted microRNA targets in mammals  
+TF-LOF_Expression_from_GEO,269,34061,641,Transcription,TRUE,From gene expression omnibus (GEO)
+TF_Perturbations_Followed_by_Expression,1958,19741,270,Transcription,TRUE,From gene expression omnibus (GEO)
+TG_GATES_2020,1190,12118,448,Diseases/Drugs,TRUE,NA
+The_Kinase_Library_2023,303,9021,793,Pathways,TRUE,An atlas of substrate specificities for the human serine/threonine kinome
+Tissue_Protein_Expression_from_Human_Proteome_Map,30,6454,301,Cell Types,TRUE,The Human Proteome Map (HPM) portal is an interactive resource to the scientific community by integrating the massive peptide sequencing result from the draft map of the human proteome project.
+Tissue_Protein_Expression_from_ProteomicsDB,207,13572,301,Legacy,FALSE,The Human Proteome Map (HPM) portal is an interactive resource to the scientific community by integrating the massive peptide sequencing result from the draft map of the human proteome project.
+Transcription_Factor_PPIs,290,6002,77,Transcription,TRUE,NA
+TRANSFAC_and_JASPAR_PWMs,326,27884,1284,Transcription,TRUE,NA
+TRRUST_Transcription_Factors_2019,571,3264,22,Transcription,TRUE,TRRUST (version 2) is a manually curated database of human and mouse transcriptional regulatory networks.
+UK_Biobank_GWAS_v1,857,14148,122,Diseases/Drugs,TRUE,NA
+Virus-Host_PPI_P-HIPSTer_2020,6715,5605,39,Pathways,TRUE,NA
+Virus_Perturbations_from_GEO_down,323,17576,300,Diseases/Drugs,TRUE,From gene expression omnibus (GEO)
+Virus_Perturbations_from_GEO_up,323,17711,300,Diseases/Drugs,TRUE,From gene expression omnibus (GEO)
+VirusMINT,85,851,15,Diseases/Drugs,TRUE,NA
+WikiPathway_2021_Human,622,7173,43,Pathways,FALSE,"WikiPathways is an open science platform for biological pathways contributed, updated, and used by the research community"
+WikiPathway_2023_Human,801,8044,42,Pathways,TRUE,"WikiPathways is an open science platform for biological pathways contributed, updated, and used by the research community"
+WikiPathways_2013,199,2854,34,Pathways,FALSE,"WikiPathways is an open science platform for biological pathways contributed, updated, and used by the research community"
+WikiPathways_2015,404,5863,51,Pathways,FALSE,"WikiPathways is an open science platform for biological pathways contributed, updated, and used by the research community"
+WikiPathways_2016,437,5966,51,Pathways,FALSE,"WikiPathways is an open science platform for biological pathways contributed, updated, and used by the research community"
+WikiPathways_2019_Human,472,6201,45,Pathways,FALSE,"WikiPathways is an open science platform for biological pathways contributed, updated, and used by the research community"
+WikiPathways_2019_Mouse,176,4558,54,Pathways,TRUE,"WikiPathways is an open science platform for biological pathways contributed, updated, and used by the research community"
