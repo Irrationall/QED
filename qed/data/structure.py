@@ -1,6 +1,6 @@
 from dataclasses import dataclass, asdict, field
 import pandas as pd
-import pkg_resources
+import importlib.resources as resources
 from typing import List, Dict
 
 
@@ -136,7 +136,7 @@ class EnrichR_DB_info :
 ENRICHR_DB = EnrichR_DB()
 
 # file contains EnrichR database information
-file_path = pkg_resources.resource_filename('qed.data', 'DB/EnrichR_DB_list.csv')
+file_path = resources.files('qed.data').joinpath('DB/EnrichR_DB_list.csv')
 DB_DF = pd.read_csv(file_path)
 
 for _, row in DB_DF.iterrows():
