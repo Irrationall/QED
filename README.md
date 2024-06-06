@@ -203,6 +203,38 @@ plt.show()
 ```
 ![Heatmap](./example_image/example_heatmap_2.png)
 
+<br />
+<br />
+<br />
+
+
+## EnrichR Database List
+
+
+```python
+from qed.data import ENRICHR_DB
+
+# First, let's check categories of EnrichR Database.
+ENRICHR_DB.categories
+
+```
+
+
+['Misc', 'Pathways', 'Crowd', 'Diseases/Drugs', 'Legacy', 'Cell Types', 'Ontologies', 'Transcription']
+
+
+```python
+# Then, search Database you want.
+
+dbs = ENRICHR_DB.search_DB(category=['Ontologies', 'Pathways'], is_latest=True, by_name="GO")
+dbs
+```
+[name: GO_Biological_Process_2023 / category: Ontologies,  
+ name: GO_Cellular_Component_2023 / category: Ontologies,  
+ name: GO_Molecular_Function_2023 / category: Ontologies,  
+ name: SynGO_2024 / category: Ontologies]
+
+
 
 
 
